@@ -206,6 +206,14 @@ describe('TestScheduler', () => {
         expectObservable(Rx.Observable.empty()).toBe('|', {});
       });
 
+      it('should handle of', () => {
+        expectObservable(Rx.Observable.of(1)).toBe('(a|)', {a: 1});
+      });
+
+      it('should handle fromPromise', () => {
+        expectObservable(Rx.Observable.fromPromise(Promise.resolve(1))).toBe('(a|)', {a: 1});
+      });
+
       it('should handle never', () => {
         expectObservable(Rx.Observable.never()).toBe('-', {});
         expectObservable(Rx.Observable.never()).toBe('---', {});
